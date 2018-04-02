@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Employee List - Ordinal Bar </title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/dc.css"/>
+</head>
+<body>
+
+<div class="container">
+<script type="text/javascript" src="header.js"></script>
+<div id="barchart"></div>
+
+<script type="text/javascript" src="../js/d3.js"></script>
+<script type="text/javascript" src="../js/crossfilter.js"></script>
+<script type="text/javascript" src="../js/dc.js"></script>
+<script type="text/javascript">
+
+  var chart = dc.barChart('#barchart');
+
+  d3.json('fruits.json', function(error, counts) {
+      if(error)
+          throw new Error(error);
+
+      var ndx            = crossfilter(counts),
+          fruitDimension = ndx.dimension(function(d) {return d.name;}),
+          sumGroup       = fruitDimension.group().reduceSum(function(d) {return d.cnt;});
+
+      chart
+          .width(768)
+          .height(380)
+          .x(d3.scale.ordinal())
+          .xUnits(dc.units.ordinal)
+          .brushOn(false)
+          .xAxisLabel('Technologies')
+          .yAxisLabel('Requirment Empolyee')
+          .dimension(fruitDimension)
+          .barPadding(0.1)
+          .outerPadding(0.05)
+          .group(sumGroup);
+
+      chart.render();
+  });
+
+</script>
+
+</div>
+</body>
+</html>

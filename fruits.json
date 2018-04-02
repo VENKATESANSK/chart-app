@@ -1,0 +1,10 @@
+[
+    {"name": "UI", "cnt": 10},
+    {"name": ".net", "cnt": 40},
+    {"name": "java", "cnt": 32},
+    {"name": "Testing", "cnt": 2},
+    {"name": "Fresher", "cnt": 4},
+    {"name": "SAP", "cnt": 10},
+    {"name": "MainFrame", "cnt": 12},
+    {"name": "visual designer", "cnt": 10}
+]
